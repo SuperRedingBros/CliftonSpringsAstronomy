@@ -8,7 +8,11 @@
 
 }
 
-.itme {
+body {
+  color: white;
+}
+
+.item {
     background-color: darkslategray;
 
 }
