@@ -1,6 +1,5 @@
 * {
     background-color:black;
-    color: white;
 }
 
 #Gallery {
@@ -14,7 +13,6 @@ body {
 
 .item {
     background-color: darkslategray;
-
 }
 
 .image {
