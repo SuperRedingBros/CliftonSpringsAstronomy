@@ -1,1 +1,14 @@
-* {background-color:blue;}
+* {
+    background-color:black;
+}
+
+#Gallery {
+    background-color: darkslategray;
+
+}
+
+.image {
+    background-color: darkslategray;
+    color: white;
+    border-style: solid;
+}
