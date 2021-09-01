@@ -20,3 +20,51 @@ body {
     color: white;
     border-style: solid;
 }
+
+
+.navbar {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background-color: grey;
+}
+
+
+
+.navbar li {
+  display: inline;
+}
+
+.navbar li a {
+  display: block;
+  padding: 8px;
+  background-color: #dddddd;
+}
+
+.navbar li a:link, .navbar li a:visited {
+  background-color: #f44336;
+  color: white;
+  padding: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.navbar li a:hover, .navbar li a:active {
+  display: inline-block;
+  background-color: red;
+}
+
+.banner {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info {
+ text-shadow: 4px 4px 5px red;
+ font-size: 50px;
+ display: inline;
+ text-indent: 50px;
+ background-color: grey;
+}
