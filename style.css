@@ -68,3 +68,13 @@ body {
  text-indent: 50px;
  background-color: grey;
 }
+
+.numdisplay {
+  text-shadow: 4px 4px 5px red;
+  font-size: 50px;
+}
+
+p.#hi {
+  text-shadow: 4px 4px 5px red;
+  font-size: 50px;
+}
