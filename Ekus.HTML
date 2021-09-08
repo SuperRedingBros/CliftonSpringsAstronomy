@@ -2,18 +2,30 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>EKUS</title>
+    <title>Ekus</title>
+    <link href= "style.css" type="text/css" rel=”stylesheet” media="all" />
     <style>
-      @import style.css;
+      @import "style.css";
     </style>
   </head>
   <body>
-    <div class="upgrades">
+    <img src="./Images/Cover.jpg" width="500" height="300" class="banner"/>
+    <header>
+      <ul class="navbar">
+        <li><a href = "Ekus.html">Ekus</a></li>
+        <li><a href = "gallery.html">Gallery</a></li>
+        <li><a href = "#Info">Info</a></li>
+        <li><a href = "index.html">Main</a></li>
+        <li><p class="info">Welcome to Clifton Springs Astronomy.</p></li>
+      </ul>
+      <p></p>
+    </header>
+    <div class="upgrades" id="upgradesection">
 
     </div>
     <div class="numbers">
       <p id="hi" style="text-shadow: 4px 4px 5px red; font-size: 50px;">0</p>
-      <button type="button" name="button" onclick="clicktest()" > <img src="Images/scope.png" width = "100px"/></button>
+      <button type="button" name="button" onclick="clicktest()" class="button"> <img src="Images/scope.png" width = "100px" class="button"/></button>
     </div>
     <script src="ekus.js">
 
