@@ -42,12 +42,15 @@ h2, h3, h4 {
 
 .navbar li a {
   display: block;
-  padding: 8px;
+  padding: 20px;
   background-color: rgb(153, 0, 0);
   transition-duration: .3s;
+  border: 5px outset #845007;
+  border-radius: 2px;
 }
 
 .navbar li a:link, .navbar li a:visited {
+  padding: 20px;
   background-color: #f44336;
   color: white;
   padding: 8px;
@@ -57,7 +60,7 @@ h2, h3, h4 {
 }
 
 .navbar li a:hover, .navbar li a:active {
-  padding: 8px;
+  padding: 10px;
   display: inline-block;
   background-color: rgb(153, 0, 0);
 }
@@ -70,7 +73,7 @@ h2, h3, h4 {
 
 .info {
  text-shadow: 4px 4px 5px red;
- font-size: 50px;
+ font-size: 40px;
  display: inline;
  text-indent: 50px;
  background-color: grey;
