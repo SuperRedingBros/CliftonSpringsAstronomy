@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=3.2">
+
+    <title>Model Embedding | Solar System Scope</title>
+    <meta name="description" content="Full screen experience of desktop aplikacion of Solar System Scope. You can start here.">
+    <meta name="keywords" content="solar system, planets, orbits, night sky, stars, constellations, space, universe, sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto">
+    <link rel="shortcut icon" href="https://www.solarsystemscope.com/images/favicon.png">
+    <link rel="image_src" type="image/jpeg" href="https://www.solarsystemscope.com/images/favicon.png">
+
+	<script async="" src="iframe_data/gtm.js"></script><script>
+		var updateViewport = function () {
+			var minWidth = 500;
+			var screenWidth = screen.width;
+			switch(window.orientation) {  
+				case -90:
+				case 90:
+					minWidth = 730;
+					screenWidth = screen.height;
+					break; 
+			}
+			document.getElementById("viewport").setAttribute("content","width=device-width, initial-scale=" + (screenWidth / minWidth));
+		}
+		window.addEventListener('orientationchange', updateViewport);
+		updateViewport();
+	</script>
+
+    
+    <!-- GOOGLE TAG MANAGER -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MDW8FQ9');
+    </script>
+	
+
+    <!-- OG -->
+    <meta property="og:title" content="Solar System Scope">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.solarsystemscope.com/">
+    <meta property="og:image" content="https://www.solarsystemscope.com/images/sss_og.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:description" content="Online 3D simulation of the Solar System and night sky in real time - the Sun, planets, dwarf planets, comets, stars and constellations">
+    <meta property="og:site_name" content="Solar System Scope">
+    <meta property="og:locale" content="en_US">
+    <meta property="fb:admins" content="100002850404644">
+
+	<!-- JQUERY -->
+	<script src="iframe_data/jquery.js"></script>
+	<script type="text/javascript" src="iframe_data/jquery_002.js"></script>
+	
+	<!-- BOOTSTRAP -->
+	<script src="iframe_data/bootstrap.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="iframe_data/bootstrap.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="iframe_data/bootstrap-xxs-tn.css">
+	
+		
+	<!-- MOBILE DETECT -->
+	<script src="iframe_data/mobile-detect.js"></script>
+		
+	<!-- SOLAR CSS -->
+	<link rel="stylesheet" href="iframe_data/fonts.css">
+<link rel="stylesheet" href="iframe_data/main.css">
+<link rel="stylesheet" href="iframe_data/ui.css">
+<link rel="stylesheet" href="iframe_data/header.css">
+<link rel="stylesheet" href="iframe_data/footer.css">
+<link rel="stylesheet" href="iframe_data/model-iframe.css">
+<link rel="stylesheet" href="iframe_data/iframe.css">
+
+	
+	<!-- SOLAR JS -->
+	<script src="iframe_data/solar.js"></script>
+
+</head>
+
+<body page="iframe" class="dsk webgl">
+	
+
+	<!-- GOOGLE TAG MANAGER -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDW8FQ9" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+	
+    <div class="solar-model">
+		
+		<!-- ------------------------
+		INIT WEBGL MODEL
+		------------------------- -->
+		
+		<script src="iframe_data/3998187b7e8feaa618a93b293c0e6812.js"></script>
+		<script type="text/javascript">
+
+			var body = $("body");
+			if (UnityLoader.SystemInfo.mobile)
+			{
+				body.removeClass("dsk");
+				body.addClass("mbl");
+			}
+			else {
+				body.removeClass("mbl");
+				body.addClass("dsk");
+				if (UnityLoader.SystemInfo.hasWebGL && ["Firefox", "Chrome", "Safari", "Edge"].indexOf(UnityLoader.SystemInfo.browser) != -1)
+					body.addClass("webgl");
+			}
+		
+			if (body.hasClass("dsk") && body.hasClass("webgl"))
+			{
+				var loadingDone = false;
+				var solarInstance;
+				var loadingStart;
+				
+				var ResizeModel = function()
+				{
+					var holder = $(".solar-model-run");
+					var canvas = $(".solar-model-run canvas");
+					//fullscreen
+					if (window.innerHeight == screen.height) {
+						canvas.attr("width", screen.width);
+						canvas.attr("height", screen.height);
+					}
+					//window
+					else {
+						canvas.attr("width", holder.width());
+						canvas.attr("height", holder.height());
+					}
+				}
+				
+				LoadingProgress = function (gameInstance, progress) {
+					if (!gameInstance.Module)
+						return;
+					var loadingDelta = Date.now() - loadingStart;
+					console.log("loading p[" + progress + "] ms[" + loadingDelta + "]");
+					var checkLoadedReal = function() {
+						var canvas = $(".solar-model-run canvas");
+						if (canvas.attr("width"))
+						{
+							$(".solar-model-ok").remove();
+							$(".solar-model-browser").remove();
+							$(".solar-model-mobile").remove();
+							$(".solar-model-run").css({ opacity: 1 });
+							$(window).resize(ResizeModel);
+							setInterval(ResizeModel, 1000);
+							ResizeModel();
+						}
+						else
+						{
+							setTimeout(checkLoadedReal, 100);
+						}
+					}
+					if (progress >= 1 && !loadingDone) {
+						loadingDone = true;
+						$(".solar-model-run").css({ opacity: 0, display: "block" });
+						checkLoadedReal();
+					}
+					var progressPercent = Math.floor(progress * 100);
+					$(".solar-loading-topic").html(
+						loadingDone ? "Finishing" :
+							loadingDelta > 1000 ? progressPercent < 10 ? "0" + progressPercent + "%" : progressPercent + "%" :
+								"Loading");
+				}
+
+				RunModel = function () {
+					
+					var cell1Parent = $(".solar-model-ok .model-topics").parent().parent();
+					var cell2Parent = $(".solar-model-ok .model-btn-start").parent().parent();
+					
+					cell1Parent.css("height", cell1Parent.height() + "px");
+					cell2Parent.css("height", cell2Parent.height() + "px");
+					
+					$(".solar-model-ok .model-topics").remove();
+					$(".solar-model-ok .model-btn-start").remove();
+					
+					var loadingElement = $(
+						"<div class=\"solar-loading\">"+
+							"<div class=\"solar-loading-topic\">"+
+								"Loading"+
+							"</div>"+
+							"<div class=\"solar-loading-bar\">"+
+								"<div class=\"l\"></div>"+
+								"<div class=\"c\"></div>"+
+								"<div class=\"r\"></div>"+
+							"</div>"+
+						"</div>");
+						
+					$(".solar-model-ok .cell-center").append(loadingElement);
+					
+					loadingStart = Date.now();
+					setTimeout(function () {
+						solarInstance = UnityLoader.instantiate("solar-model-webgl-container", "/webgl_3-2-3/c01aad529dee3e01b4b48ce476fa9220.json", { onProgress: LoadingProgress });
+					}, 1500);
+					var enableSelectionOnMouseUp = function () {
+						$(document).off("mouseup", enableSelectionOnMouseUp);
+						$("body").removeClass("noselect");
+					};
+					$("#solar-model-webgl-container").on("mousedown", function () {
+						$("body").addClass("noselect");
+						$(document).on("mouseup", enableSelectionOnMouseUp);
+					});
+				}
+			}
+		</script>
+		
+		<!-- ------------------------
+		MODEL WINDOW DESKTOP OK
+		------------------------- -->
+		
+		<table class="solar-model-ok only-dsk-webgl">
+			<tbody><tr><td>
+				<a href="https://www.solarsystemscope.com/" title="Solar System Scope Homepage" target="_blank" class="logo"><img src="iframe_data/header_logo.png" class="solar-model-embed-logo" alt="Solar System Scope"></a>
+			</td></tr>
+		
+			<tr><td class="cell-center">
+				<div class="model-topics">
+					<div class="solar-h1">Online Model</div>
+					<div class="solar-h2">Solar System and Night Sky</div>
+				</div>
+			</td></tr>
+			
+			<tr><td>
+				<a class="model-btn-start btn-type-8-turquoise" href="javascript: RunModel();">
+					Start
+				</a>
+			</td></tr>
+		</tbody></table>
+
+		<!-- ------------------------
+		MODEL WINDOW DESKTOP RUNNING
+		------------------------- -->
+
+        <div class="solar-model-run" style="display: none;">
+            <div id="solar-model-webgl-container" style="width: 100%; height: 100%;">
+            </div>
+        </div>
+		
+		<!-- ------------------------
+		MODEL WINDOW BROWSER DISABLED
+		------------------------- -->
+
+		<table class="solar-model-browser only-dsk-nowebgl">
+			<tbody><tr><td>
+				<a href="https://www.solarsystemscope.com/" title="Solar System Scope Homepage" target="_blank" class="logo"><img src="iframe_data/header_logo.png" class="solar-model-embed-logo" alt="Solar System Scope"></a>
+			</td></tr>
+			
+			<tr><td>
+				<div class="model-browsers-description">
+					to run the online model of solar system,<br>please use one of following browsers
+				</div>
+			</td></tr>
+			
+			<tr><td>
+				<div class="model-browsers-list">
+					<a href="https://www.google.com/chrome" target="_blank">Google Chrome 57</a>
+					<a href="https://www.mozilla.org/en-US/firefox/new/" target="_blank">Mozilla Firefox 52</a>
+					<a href="https://support.apple.com/downloads/safari" target="_blank">Apple Safari 10.1</a>
+					<!--<a href="https://www.microsoft.com/en-us/windows/microsoft-edge" target="_blank">MS Edge 15</a>-->
+				</div>
+			</td></tr>
+        </tbody></table>
+		
+		<!-- ------------------------
+		MODEL WINDOW MOBILE
+		------------------------- -->
+		
+		<table class="solar-model-mobile only-mbl">
+			<tbody><tr><td>
+				<a href="https://www.solarsystemscope.com/" title="Solar System Scope Homepage" target="_blank" class="logo"><img src="iframe_data/header_logo.png" class="solar-model-embed-logo" alt="Solar System Scope"></a>
+			</td></tr>
+			
+			<tr><td>
+				<div class="model-topics">
+					<div class="solar-h2">Solar System and Night Sky</div>
+					<div class="solar-h1">Mobile Version</div>
+				</div>
+			</td></tr>
+			
+			<tr><td>
+				<div class="model-store-btns">
+					<a href="https://play.google.com/store/apps/details?id=air.com.eu.inove.sss2&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1" target="_blank"><img src="iframe_data/btn_model_google_play.png" alt="Get it on Goole Play"></a>
+					<a href="https://itunes.apple.com/us/app/solar-system-scope/id863969175" target="_blank"><img src="iframe_data/btn_model_itunes.png" alt="Get it on iTunes"></a>
+				</div>
+			</td></tr>
+
+        
+
+     
+
+
+</tbody></table></div></body></html>
