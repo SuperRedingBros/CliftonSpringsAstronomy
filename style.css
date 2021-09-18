@@ -109,3 +109,18 @@ p.#hi {
 .upgrade {
   background-color: white;
 }
+
+#Recomendations ul {
+  list-style-type: none;
+}
+
+#Recomendations ul li {
+  border-radius: 5px;
+  border: 5px outset white;
+}
+
+#Recomendations ul li a {
+  color: blue;
+  border-radius: 5px;
+  border: 5px outset blue;
+}
