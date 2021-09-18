@@ -2,6 +2,8 @@
     background-color:black;
 }
 
+@import "style2.css";
+
 #Gallery {
     background-color: darkslategray;
 }
@@ -123,4 +125,8 @@ p.#hi {
   color: blue;
   border-radius: 5px;
   border: 5px outset blue;
+}
+
+.Gallerydisplay {
+  padding-left: 20%;
 }
